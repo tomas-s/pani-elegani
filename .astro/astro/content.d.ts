@@ -171,7 +171,14 @@ declare module 'astro:content' {
 	};
 
 	type DataEntryMap = {
-		
+		"reviews": {
+"google": {
+	id: "google";
+  collection: "reviews";
+  data: InferEntrySchema<"reviews">
+};
+};
+
 	};
 
 	type AnyEntryMap = ContentEntryMap & DataEntryMap;

@@ -15,20 +15,21 @@ const { title = 'PÁNI ELEGÁNI | Barber shop', description = 'Barber shop PÁNI
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-brand-50 text-brand-950 antialiased">
+  <body class="min-h-screen bg-dark-900 text-cream antialiased">
     <slot />
   </body>
 </html>
 
 <style is:global>
-  :root {
-    --font-display: 'Cormorant Garamond', serif;
-    --font-sans: 'Outfit', system-ui, sans-serif;
-  }
   html {
     scroll-behavior: smooth;
+    font-synthesis: none;
+  }
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 </style>

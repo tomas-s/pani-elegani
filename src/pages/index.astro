@@ -5,126 +5,243 @@ import { getEntry } from 'astro:content';
 const aboutEntry = await getEntry('about', 'about');
 const pricingEntry = await getEntry('pricing', 'pricing');
 const historyEntry = await getEntry('history', 'history');
+const reviewsEntry = await getEntry('reviews', 'google');
 
 const aboutRender = aboutEntry ? await aboutEntry.render() : null;
 const historyRender = historyEntry ? await historyEntry.render() : null;
+
+const pricingCategories = pricingEntry?.data.categories ?? (pricingEntry?.data.items ? [{ name: 'Služby', items: pricingEntry.data.items }] : []);
+const reviews = reviewsEntry?.data.reviews ?? [];
+const googleProfileUrl = reviewsEntry?.data.googleProfileUrl ?? '#';
 ---
 
 <BaseLayout>
   <!-- Navigation -->
-  <header class="sticky top-0 z-50 border-b border-brand-200/80 bg-brand-50/95 backdrop-blur supports-[backdrop-filter]:bg-brand-50/80">
-    <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6" aria-label="Hlavná navigácia">
-      <a href="#" class="font-display text-xl font-semibold tracking-tight text-brand-800 sm:text-2xl">PÁNI ELEGÁNI</a>
-      <ul class="flex gap-6 text-sm font-medium text-brand-700">
-        <li><a href="#o-nas" class="hover:text-brand-900">O nás</a></li>
-        <li><a href="#cennik" class="hover:text-brand-900">Cenník</a></li>
-        <li><a href="#historia" class="hover:text-brand-900">História</a></li>
-        <li><a href="https://pani-elegani.reservio.com/" target="_blank" rel="noopener noreferrer" class="rounded-full bg-brand-800 px-4 py-2 text-brand-50 hover:bg-brand-900">Rezervácia</a></li>
-      </ul>
+  <header class="sticky top-0 z-50 border-b border-dark-700 bg-dark-900/95 backdrop-blur supports-[backdrop-filter]:bg-dark-900/90">
+    <nav class="flex items-center justify-between px-6 py-5" aria-label="Hlavná navigácia">
+      <a href="#" class="font-display text-[17px] font-bold tracking-[0.02em] text-cream leading-[22px]">
+        PÁNI ELEGÁNI
+      </a>
+      <div class="flex items-center gap-4">
+        <ul class="hidden sm:flex gap-6 text-[12px] font-medium font-sans text-gold-muted tracking-[0.04em]">
+          <li><a href="#o-nas" class="hover:text-cream transition-colors">O nás</a></li>
+          <li><a href="#cennik" class="hover:text-cream transition-colors">Cenník</a></li>
+          <li><a href="#historia" class="hover:text-cream transition-colors">História</a></li>
+          {reviews.length > 0 && <li><a href="#recenzie" class="hover:text-cream transition-colors">Recenzie</a></li>}
+        </ul>
+        <a
+          href="https://pani-elegani.reservio.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-full border border-gold py-[9px] px-[18px] font-sans text-[12px] font-medium tracking-[0.04em] text-gold hover:bg-gold hover:text-dark-900 transition-colors"
+        >
+          Rezervácia
+        </a>
+      </div>
     </nav>
   </header>
 
   <main>
     <!-- Hero -->
-    <section id="hero" class="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-28 md:py-36">
-      <div class="mx-auto max-w-4xl text-center">
-        <h1 class="font-display text-4xl font-semibold tracking-tight text-brand-900 sm:text-5xl md:text-6xl">
-          PÁNI ELEGÁNI
-        </h1>
-        <p class="mt-4 font-sans text-lg text-brand-700 sm:text-xl">
-          Kde štýl stretáva tradíciu. Váš barber shop v srdci mesta.
-        </p>
-        <a href="https://pani-elegani.reservio.com/" target="_blank" rel="noopener noreferrer" class="mt-8 inline-block rounded-full bg-brand-800 px-8 py-3 font-medium text-brand-50 shadow-lg transition hover:bg-brand-900 focus:outline-none focus:ring-2 focus:ring-brand-600 focus:ring-offset-2">
-          Rezervovať termín
-        </a>
-      </div>
+    <section id="hero" class="w-full flex flex-col pt-20 pb-[72px] bg-dark-900 px-6">
+      <p class="text-[10px] tracking-[0.2em] uppercase mb-7 text-gold font-sans font-medium leading-3">
+        Barber Shop
+      </p>
+      <h1 class="font-display">
+        <span class="block text-[64px] leading-[60px] tracking-[-0.02em] text-cream font-black">PÁNI</span>
+        <span class="block text-[64px] leading-[60px] tracking-[-0.02em] mb-8 text-gold font-black">ELEGÁNI</span>
+      </h1>
+      <p class="text-[14px] leading-[22px] mb-12 text-gold-muted font-sans font-light">
+        Buď sám sebou a cít sa skvelo.<br />Bánovce nad Bebravou.
+      </p>
+      <a
+        href="https://pani-elegani.reservio.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="self-start rounded-xs py-[15px] px-8 bg-gold font-sans text-[13px] tracking-[0.06em] uppercase text-dark-900 font-bold leading-4 hover:bg-[#D4B87A] transition-colors focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-dark-900"
+      >
+        Rezervovať
+      </a>
     </section>
 
     <!-- O nás -->
-    <section id="o-nas" class="border-t border-brand-200 bg-white px-4 py-16 sm:px-6 sm:py-20">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="font-display text-3xl font-semibold text-brand-900 sm:text-4xl">O nás</h2>
-        <div class="mt-6 space-y-4 font-sans text-brand-700 leading-relaxed prose prose-brand max-w-none">
-          {aboutRender && <aboutRender.Content />}
-          {!aboutEntry && (
-            <>
-              <p>Vitajte v PÁNOCH ELEGÁNOCH – barber shopu, kde sa staráme o váš vzhľad s dôrazom na detail a pohodu.</p>
-              <p>Naši barberi majú skúsenosti a záleží nám na tom, aby ste odchádzali spokojní.</p>
-            </>
-          )}
-        </div>
+    <section id="o-nas" class="w-full py-14 px-6 bg-dark-800">
+      <p class="text-[10px] tracking-[0.2em] uppercase mb-5 text-gold font-sans font-medium leading-3">O nás</p>
+      <h2 class="text-[30px] leading-9 mb-5 text-cream font-display font-bold">
+        {aboutEntry?.data?.subtitle ?? 'Remeslo s cítom a dôrazom na detail'}
+      </h2>
+      <div class="text-[14px] leading-6 text-gold-muted font-sans font-light prose-dark">
+        {aboutRender
+          ? <aboutRender.Content />
+          : <p>Vitajte v PÁNOCH ELEGÁNOCH – barber shope, kde sa staráme o váš vzhľad s dôrazom na detail a pohodu. Konzultácia, strih, úprava brady – všetko s rešpektom k vašej osobnosti.</p>
+        }
       </div>
     </section>
 
-    <!-- Cenník -->
-    <section id="cennik" class="border-t border-brand-200 px-4 py-16 sm:px-6 sm:py-20">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="font-display text-3xl font-semibold text-brand-900 sm:text-4xl">Cenník</h2>
-        <ul class="mt-8 space-y-4 font-sans" role="list">
-          {pricingEntry?.data.items.map((item) => (
-            <li class="flex justify-between border-b border-brand-200 py-3 last:border-0">
-              <span class="text-brand-800">{item.name}</span>
-              <span class="font-medium text-brand-900">{item.price} €</span>
+    <!-- Cenník (tabs) -->
+    <section id="cennik" class="w-full py-14 px-6 bg-dark-900">
+      <p class="text-[10px] tracking-[0.2em] uppercase mb-6 text-gold font-sans font-medium leading-3">Cenník</p>
+      {pricingCategories.length > 0 ? (
+        <>
+          <!-- Tab list -->
+          <div class="overflow-x-auto -mx-6 px-6" role="tablist" aria-label="Kategórie cenníka">
+            <div class="flex min-w-0 gap-0 border-b border-dark-700 mb-0">
+              {pricingCategories.map((cat, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  aria-selected={i === 0}
+                  aria-controls={`cennik-panel-${i}`}
+                  id={`cennik-tab-${i}`}
+                  data-tab-index={i}
+                  class="cennik-tab whitespace-nowrap px-4 py-2.5 font-sans text-[12px] font-medium tracking-[0.04em] text-gold-muted transition-colors hover:text-cream focus:outline-none data-[active]:text-gold data-[active]:border-b-2 data-[active]:border-gold data-[active]:-mb-px"
+                  data-active={i === 0 ? '' : undefined}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
+          </div>
+          <!-- Tab panels -->
+          {pricingCategories.map((cat, i) => (
+            <div
+              role="tabpanel"
+              id={`cennik-panel-${i}`}
+              aria-labelledby={`cennik-tab-${i}`}
+              hidden={i !== 0}
+              class="cennik-panel"
+              data-panel-index={i}
+            >
+              <ul class="font-sans" role="list">
+                {cat.items.map((item) => (
+                  <li class="flex justify-between items-start gap-4 py-4 border-b border-dark-700 last:border-0">
+                    <div class="flex flex-col gap-0.5 min-w-0">
+                      <span class="text-[14px] text-cream font-light leading-[18px]">{item.name}</span>
+                      {item.description && (
+                        <span class="text-[11px] text-gold-muted font-light leading-4 opacity-70">{item.description}</span>
+                      )}
+                      {item.duration && (
+                        <span class="text-[10px] tracking-[0.08em] uppercase text-gold font-medium opacity-60 mt-0.5">{item.duration}</span>
+                      )}
+                    </div>
+                    <span class="text-[22px] text-gold font-display font-bold leading-7 shrink-0">{item.price} €</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          {pricingEntry?.data.note && (
+            <p class="mt-6 font-sans text-[12px] text-gold-muted font-light">{pricingEntry.data.note}</p>
+          )}
+        </>
+      ) : (
+        <ul class="font-sans" role="list">
+          {[
+            { name: 'Pánsky strih', price: '20' },
+            { name: 'Detský strih', price: '16' },
+            { name: 'Úprava brady', price: '14' },
+            { name: 'Holenie Hot Towel', price: '15' },
+            { name: 'Balíček Elegánov', price: '48' },
+          ].map((item) => (
+            <li class="flex justify-between items-baseline py-4 border-b border-dark-700 last:border-0">
+              <span class="text-[14px] text-cream font-light leading-[18px]">{item.name}</span>
+              <span class="text-[22px] text-gold font-display font-bold leading-7">{item.price} €</span>
             </li>
           ))}
-          {!pricingEntry && (
-            <>
-              <li class="flex justify-between border-b border-brand-200 py-3"><span class="text-brand-800">Strih</span><span class="font-medium text-brand-900">15 €</span></li>
-              <li class="flex justify-between border-b border-brand-200 py-3"><span class="text-brand-800">Strih + brada</span><span class="font-medium text-brand-900">22 €</span></li>
-              <li class="flex justify-between py-3"><span class="text-brand-800">Holenie brýtkou</span><span class="font-medium text-brand-900">18 €</span></li>
-            </>
-          )}
         </ul>
-        <p class="mt-6 text-sm text-brand-600">{pricingEntry?.data.note ?? 'Ceny sú orientačné. Aktuálny cenník môžete overiť pri rezervácii.'}</p>
-      </div>
+      )}
     </section>
 
     <!-- História -->
-    <section id="historia" class="border-t border-brand-200 bg-white px-4 py-16 sm:px-6 sm:py-20">
-      <div class="mx-auto max-w-3xl">
-        <h2 class="font-display text-3xl font-semibold text-brand-900 sm:text-4xl">História</h2>
-        <div class="mt-6 space-y-4 font-sans text-brand-700 leading-relaxed prose prose-brand max-w-none">
-          {historyRender && <historyRender.Content />}
-          {!historyEntry && (
-            <>
-              <p>PÁNI ELEGÁNI vznikli z lásky k remeslu a k tradičnej barber kultúre.</p>
-              <p>Od otvorenia sa snažíme držať vysoký štandard služieb a vytvárať vernú komunitu zákazníkov.</p>
-            </>
-          )}
-        </div>
+    <section id="historia" class="w-full py-14 px-6 bg-dark-800">
+      <p class="text-[10px] tracking-[0.2em] uppercase mb-5 text-gold font-sans font-medium leading-3">História</p>
+      <h2 class="text-[30px] leading-9 mb-5 text-cream font-display font-bold">
+        {historyEntry?.data?.subtitle ?? 'Zrodili sme sa z lásky k remeslu'}
+      </h2>
+      <div class="text-[14px] leading-6 text-gold-muted font-sans font-light prose-dark">
+        {historyRender
+          ? <historyRender.Content />
+          : <p>PÁNI ELEGÁNI vznikli z túhy po autentickej barber kultúre. Chceli sme vytvoriť miesto, kde muž príde, oddýchne si a odchádza s novým sebavedomím.</p>
+        }
       </div>
     </section>
 
-
-    <!-- Kontakt / Footer -->
-    <footer class="border-t border-brand-200 bg-brand-100/50 px-4 py-12 sm:px-6">
-      <div class="mx-auto max-w-4xl">
-        <div class="flex flex-col gap-8 sm:flex-row sm:justify-between sm:gap-12">
-          <div>
-            <span class="font-display text-xl font-semibold text-brand-900">PÁNI ELEGÁNI</span>
-            <p class="mt-1 font-sans text-sm text-brand-700">Barber shop</p>
-          </div>
-          <div class="font-sans text-sm text-brand-700">
-            <p class="font-medium text-brand-900">Adresa</p>
-            <p class="mt-1">Sládkovičova 1429</p>
-            <p>Bánovce nad Bebravou</p>
-            <p class="text-brand-500">(1. poschodie)</p>
-            <p class="mt-3 font-medium text-brand-900">Kontakt</p>
-            <a href="tel:+421911871479" class="mt-1 block hover:text-brand-900">+421 911 871 479</a>
-          </div>
-          <div class="font-sans text-sm text-brand-700">
-            <p class="font-medium text-brand-900">Otváracie hodiny</p>
-            <ul class="mt-1 space-y-1">
-              <li class="flex justify-between gap-8"><span>Pondelok – Piatok</span><span>08:00 – 12:00</span></li>
-              <li class="flex justify-between gap-8"><span></span><span>13:00 – 17:00</span></li>
-              <li class="flex justify-between gap-8 text-brand-500"><span>Sobota – Nedeľa</span><span>Zatvorené</span></li>
-            </ul>
-          </div>
-        </div>
-        <p class="mt-10 text-center font-sans text-xs text-brand-600">
-          © {new Date().getFullYear()} PÁNI ELEGÁNI. Všetky práva vyhradené.
+    <!-- Recenzie -->
+    {reviews.length > 0 && (
+      <section id="recenzie" class="w-full py-14 px-6 bg-dark-900">
+        <p class="text-[10px] tracking-[0.2em] uppercase mb-5 text-gold font-sans font-medium leading-3">Recenzie</p>
+        <h2 class="text-[30px] leading-9 mb-8 text-cream font-display font-bold">Čo hovoria naši zákazníci</h2>
+        <ul class="flex flex-col gap-6 sm:grid sm:grid-cols-2" role="list">
+          {reviews.map((r) => (
+            <li class="border border-dark-700 p-5 font-sans">
+              <div class="flex gap-0.5 text-gold text-base" aria-label={`${r.stars} z 5 hviezd`}>
+                {[1, 2, 3, 4, 5].map((s) => (
+                  <span aria-hidden="true">{s <= r.stars ? '★' : '☆'}</span>
+                ))}
+              </div>
+              <p class="mt-3 text-[14px] leading-6 text-gold-muted font-light">{r.text}</p>
+              <p class="mt-4 text-[13px] font-medium text-cream">{r.author}</p>
+              {r.date && <p class="text-[11px] text-dark-600 font-light mt-0.5">{r.date}</p>}
+            </li>
+          ))}
+        </ul>
+        <p class="mt-8">
+          <a
+            href={googleProfileUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block border border-dark-700 px-6 py-3 font-sans text-[12px] font-medium tracking-[0.04em] text-gold-muted hover:text-cream hover:border-gold-muted transition-colors focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-dark-900"
+          >
+            Všetky recenzie na Google
+          </a>
         </p>
+      </section>
+    )}
+
+    <!-- CTA + Footer -->
+    <footer class="w-full flex flex-col pt-16 pb-10 gap-12 bg-dark-900 px-6">
+      <!-- CTA -->
+      <div class="flex flex-col items-start gap-6">
+        <h2 class="text-[26px] leading-8 text-cream font-display font-bold">
+          Dohodnite si<br />termín online
+        </h2>
+        <a
+          href="https://pani-elegani.reservio.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="rounded-xs py-3.5 px-[30px] bg-gold font-sans text-[12px] tracking-[0.08em] uppercase text-dark-900 font-bold leading-4 hover:bg-[#D4B87A] transition-colors focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2 focus:ring-offset-dark-900"
+        >
+          Rezervovať na Reservio
+        </a>
+      </div>
+
+      <!-- Footer details -->
+      <div class="flex flex-col pt-8 gap-2 border-t border-dark-700">
+        <span class="text-[16px] font-display font-bold text-cream leading-5">PÁNI ELEGÁNI</span>
+        <p class="text-[12px] font-sans font-light text-gold-muted leading-4">Sládkovičova 1429, Bánovce nad Bebravou</p>
+        <a href="tel:+421911871479" class="text-[12px] font-sans font-light text-gold-muted leading-4 hover:text-cream transition-colors">+421 911 871 479</a>
+        <p class="text-[12px] font-sans font-light text-gold-muted leading-4">Po–Pi: 08:00–12:00, 13:00–17:00</p>
+        <p class="text-[11px] font-sans font-light text-dark-600 leading-[14px] mt-2">© {new Date().getFullYear()} Páni Elegáni</p>
       </div>
     </footer>
   </main>
+
+  <script>
+    document.querySelectorAll('.cennik-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const index = Number(tab.getAttribute('data-tab-index'));
+        const section = tab.closest('section');
+        if (!section) return;
+        section.querySelectorAll('.cennik-tab').forEach((t) => {
+          t.removeAttribute('data-active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        section.querySelectorAll('.cennik-panel').forEach((p) => { (p as HTMLElement).hidden = true; });
+        tab.setAttribute('data-active', '');
+        tab.setAttribute('aria-selected', 'true');
+        const panel = section.querySelector(`.cennik-panel[data-panel-index="${index}"]`);
+        if (panel) { (panel as HTMLElement).hidden = false; }
+      });
+    });
+  </script>
 </BaseLayout>

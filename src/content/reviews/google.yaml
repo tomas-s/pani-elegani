@@ -1,0 +1,22 @@
+reviews:
+  - author: Patrik Kováč
+    text: "Páni Elegáni je niečo iné ako som zažil doteraz, dostal som sa tam úplnou náhodou a odvtedy svoj haircut nezverím nikomu inému. Je to spojenie príjemného s užitočným. Veľmi príjemné a krásne voňavé priestory, vždy usmiata, komunikatívna barberka s profesionálnym a ľudským prístupom. Poradí nielen ako vybrať ten správny účes ale aj starostlivosť o vlasy, pokožku. Vždy sa tam rád aj s detmi vraciam a vždy idem spokojný a cítim sa fresh."
+    stars: 5
+    date: "pred rokom"
+  - author: Lukáš Botka
+    text: "Monikine zručnosti s nožnicami sú neobyčajné a vždy odchádzam so štýlovým strihom, ktorý presne zodpovedá môjmu štýlu. Monika je nielen skvelá barberka, ale aj príjemná osoba, s ktorou je radosť tráviť čas. Vrelo odporúčam!"
+    stars: 5
+    date: "pred rokom"
+  - author: Lukas Selucky
+    text: "Z barbershopu Páni Elegáni vždy odchádzam nadmieru spokojný! Z Moniky cítiť skutočnú vášeň pre remeslo a strih vždy dotiahne do posledného detailu. Tento barbershop vrelo odporúčam všetkým, ktorí hľadajú prvotriedne služby a výnimočný prístup."
+    stars: 5
+    date: "pred rokom"
+  - author: Dana Sko
+    text: "Chodím pravidelne so synom a je veľmi spokojný, teší sa vždy na strihanie, čo bol inokedy problém ho dotiahnuť na strihanie. Skvelý prístup, ochota, šikovnosť Barberky je TOP. Úplne odporúčam."
+    stars: 5
+    date: "pred rokom"
+  - author: botkes one
+    text: "Po jednej starej pani čo ma strihala až do vojenskej služby je toto po 23 rokoch to najlepšie čo som zažil ... Klobúk dole"
+    stars: 5
+    date: "pred 4 mesiacmi"
+googleProfileUrl: "https://www.google.com/maps/place/P%C3%81NI+ELEG%C3%81NI+BARBER"
