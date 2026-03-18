@@ -8,22 +8,21 @@ export default {
         display: ["'Playfair Display'", 'Georgia', 'serif'],
       },
       colors: {
-        dark: {
-          900: '#141210',
-          800: '#1E1A17',
-          700: '#2A2420',
-          600: '#3A3028',
-        },
-        gold: {
-          DEFAULT: '#C9A96E',
-          muted: '#8A7A6A',
-        },
-        cream: {
-          DEFAULT: '#F7F3EE',
-        },
+        ink: '#111111',       // Very dark charcoal/black
+        parchment: '#FFFFFF', // Clean white
+        accent: '#C4A47C',    // Gold/Tan accent color from the image
+        accentHover: '#B39169',
+        graphite: '#888888',  // Gray text
+        subtle: '#EAEAEA',    // Light borders
+        darkBg: '#1A1A1A',    // Slightly lighter dark for alternating sections
       },
       borderRadius: {
-        xs: '2px',
+        pill: '9999px',
+        card: '0px', // The design has sharp corners mostly, or slightly rounded
+        window: '4px',
+      },
+      boxShadow: {
+        window: '0 10px 30px rgba(0,0,0,0.1)',
       },
     },
   },
