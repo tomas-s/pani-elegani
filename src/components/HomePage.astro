@@ -36,16 +36,13 @@ const year = new Date().getFullYear();
     id="navbar"
   >
     <nav class="max-w-6xl mx-auto flex items-center justify-between px-6 py-5 gap-4" aria-label={t.navAria}>
-      <div class="flex items-center gap-3 min-w-0">
-        <a
-          href={t.homePath}
-          class="font-display text-2xl font-bold tracking-[0.15em] text-white uppercase flex items-center gap-2 shrink-0"
-        >
-          <span class="text-accent">Páni</span> Elegáni
-        </a>
-        <LanguageSwitcher locale={locale} />
-      </div>
-      <div class="flex items-center gap-6 md:gap-8">
+      <a
+        href={t.homePath}
+        class="font-display text-2xl font-bold tracking-[0.15em] text-white uppercase flex items-center gap-2 shrink-0 min-w-0"
+      >
+        <span class="text-accent">Páni</span> Elegáni
+      </a>
+      <div class="flex items-center gap-6 md:gap-8 shrink-0">
         <ul class="hidden md:flex gap-8 text-[13px] uppercase tracking-widest font-semibold font-sans text-white/70">
           <li>
             <a href={`#${t.sectionHero}`} class="text-accent transition-colors py-2">{t.navHome}</a>
@@ -77,6 +74,7 @@ const year = new Date().getFullYear();
         >
           {t.booking}
         </a>
+        <LanguageSwitcher locale={locale} />
       </div>
     </nav>
   </header>

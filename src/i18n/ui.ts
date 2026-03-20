@@ -58,9 +58,8 @@ export const ui = {
     footerLunchNote: '* obedná prestávka 12:00 - 13:00',
     footerCopyright: (year: number) => `© ${year} PÁNI ELEGÁNI. Všetky práva vyhradené.`,
     footerCookies: 'Táto stránka nepoužíva cookies.',
-    langSwitchAria: 'Jazyk stránky',
-    langSk: 'Slovenčina',
-    langEn: 'English',
+    switchToEn: 'Prepnúť na angličtinu',
+    switchToSk: 'Prepnúť na slovenčinu',
     homePath: '/',
   },
   en: {
@@ -118,9 +117,8 @@ export const ui = {
     footerLunchNote: '* lunch break 12:00 - 13:00',
     footerCopyright: (year: number) => `© ${year} PÁNI ELEGÁNI. All rights reserved.`,
     footerCookies: 'This site does not use cookies.',
-    langSwitchAria: 'Site language',
-    langSk: 'Slovak',
-    langEn: 'English',
+    switchToEn: 'Switch to English',
+    switchToSk: 'Switch to Slovak',
     homePath: '/en/',
   },
 } as const satisfies Record<
@@ -175,9 +173,8 @@ export const ui = {
     footerLunchNote: string;
     footerCopyright: (year: number) => string;
     footerCookies: string;
-    langSwitchAria: string;
-    langSk: string;
-    langEn: string;
+    switchToEn: string;
+    switchToSk: string;
     homePath: string;
   }
 >;
