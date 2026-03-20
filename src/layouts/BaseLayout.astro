@@ -1,4 +1,6 @@
 ---
+import '../styles/global.css';
+
 interface Props {
   title?: string;
   description?: string;
@@ -22,83 +24,3 @@ const { title = 'PÁNI ELEGÁNI | Barber shop', description = 'Barber shop PÁNI
     <slot />
   </body>
 </html>
-
-<style is:global>
-  html {
-    scroll-behavior: smooth;
-    font-synthesis: none;
-  }
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* Slanted sections */
-  .slanted-bottom {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 4vw));
-    padding-bottom: 8vw;
-  }
-  .slanted-top-bottom {
-    clip-path: polygon(0 4vw, 100% 0, 100% 100%, 0 calc(100% - 4vw));
-    margin-top: -4vw;
-    padding-top: 8vw;
-    padding-bottom: 8vw;
-  }
-  .slanted-top {
-    clip-path: polygon(0 4vw, 100% 0, 100% 100%, 0 100%);
-    margin-top: -4vw;
-    padding-top: 8vw;
-  }
-
-  /* Basic styling for rendered markdown content */
-  .rendered-content p {
-    margin-bottom: 1.5em;
-  }
-  .rendered-content p:last-child {
-    margin-bottom: 0;
-  }
-  .rendered-content ul {
-    list-style-type: disc;
-    padding-left: 1.5rem;
-    margin-bottom: 1.5em;
-  }
-  .rendered-content li {
-    margin-bottom: 0.5em;
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .hero-anim {
-    opacity: 0;
-    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-  .hero-anim-d1 { animation-delay: 0ms; }
-  .hero-anim-d2 { animation-delay: 150ms; }
-  .hero-anim-d3 { animation-delay: 300ms; }
-  .hero-anim-d4 { animation-delay: 450ms; }
-  .hero-anim-d5 { animation-delay: 600ms; }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(24px);
-    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .reveal.revealed {
-    opacity: 1;
-    transform: none;
-  }
-  .reveal[data-delay="80"]  { transition-delay: 80ms; }
-  .reveal[data-delay="160"] { transition-delay: 160ms; }
-  .reveal[data-delay="240"] { transition-delay: 240ms; }
-
-  @keyframes tabFadeUp {
-    from { opacity: 0; transform: translateY(10px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  .tab-entering {
-    animation: tabFadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-</style>
