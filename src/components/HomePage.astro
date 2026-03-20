@@ -90,8 +90,6 @@ const year = new Date().getFullYear();
           class="hero-anim hero-anim-d1 text-accent uppercase tracking-[0.3em] text-[12px] sm:text-[14px] font-bold mb-6 flex items-center gap-4"
         >
           <span class="w-12 h-px bg-accent/50 hidden sm:block"></span>
-          {t.heroBadge}
-          <span class="w-12 h-px bg-accent/50 hidden sm:block"></span>
         </p>
         <h1
           class="hero-anim hero-anim-d2 font-sans text-[56px] sm:text-[80px] md:text-[100px] font-bold leading-[1.05] tracking-tight mb-10"
@@ -346,11 +344,17 @@ const year = new Date().getFullYear();
               </div>
             </div>
 
-            <ul class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
-              {reviews.slice(0, 3).map((r, i) => (
+            <div class="reviews-carousel-wrapper relative">
+              <ul
+                id="reviews-carousel"
+                class="reviews-scroll flex md:grid gap-8 overflow-x-auto snap-x snap-mandatory md:overflow-visible md:snap-none -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0"
+                role="list"
+                style="-webkit-overflow-scrolling: touch"
+              >
+                {reviews.map((r, i) => (
                 <li
-                  class="reveal bg-ink border border-white/5 p-8 flex flex-col relative group overflow-hidden"
-                  data-delay={80 * (i + 1)}
+                  class="reveal reviews-card flex-shrink-0 w-[85vw] min-w-[280px] max-w-[380px] md:w-auto md:min-w-0 md:max-w-none snap-center bg-ink border border-white/5 p-8 flex flex-col relative group overflow-hidden"
+                  data-delay={i < 3 ? 80 * (i + 1) : undefined}
                 >
                   <div class="absolute top-0 left-0 w-full h-1 bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
                   <div class="flex gap-1 text-accent text-lg mb-6" aria-label={t.reviewsStarsAria(r.stars)}>
@@ -367,7 +371,19 @@ const year = new Date().getFullYear();
                   </div>
                 </li>
               ))}
-            </ul>
+              </ul>
+              <div class="reviews-dots flex justify-center gap-2 mt-6 md:hidden" role="tablist" aria-label={locale === 'en' ? 'Review slides' : 'Ďalšie recenzie'}>
+                {reviews.map((_, i) => (
+                  <button
+                    type="button"
+                    class={`reviews-dot w-2 h-2 rounded-full transition-all duration-300 hover:bg-white/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-darkBg ${i === 0 ? 'bg-accent w-3' : 'bg-white/30'}`}
+                    aria-label={locale === 'en' ? `Go to review ${i + 1}` : `Prejsť na recenziu ${i + 1}`}
+                    aria-selected={i === 0}
+                    data-index={i}
+                  />
+                ))}
+              </div>
+            </div>
             <div class="mt-16 text-center reveal" data-delay="320">
               <a
                 href={googleProfileUrl}
@@ -525,5 +541,56 @@ const year = new Date().getFullYear();
       { threshold: 0.12 }
     );
     document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // Reviews carousel – dots, click-to-scroll, auto-advance (mobile only)
+    const carousel = document.getElementById('reviews-carousel');
+    const dots = document.querySelectorAll('.reviews-dot');
+    if (carousel && dots.length > 0 && window.matchMedia('(max-width: 767px)').matches) {
+      const cards = carousel.querySelectorAll('.reviews-card');
+      const gap = 32;
+
+      function getSlideWidth() {
+        const first = cards[0] as HTMLElement | undefined;
+        return first ? first.offsetWidth + gap : Math.min(window.innerWidth * 0.85, 380) + gap;
+      }
+
+      function updateDots() {
+        const scrollLeft = carousel.scrollLeft;
+        const width = getSlideWidth();
+        const index = Math.round(scrollLeft / width);
+        const activeIndex = Math.min(Math.max(0, index), cards.length - 1);
+        dots.forEach((dot, i) => {
+          const el = dot as HTMLElement;
+          el.classList.toggle('bg-accent', i === activeIndex);
+          el.classList.toggle('w-3', i === activeIndex);
+          el.classList.toggle('bg-white/30', i !== activeIndex);
+          el.setAttribute('aria-selected', String(i === activeIndex));
+        });
+      }
+
+      function goTo(index: number) {
+        const width = getSlideWidth();
+        carousel.scrollTo({ left: index * width, behavior: 'smooth' });
+        autoIntervalReset();
+      }
+
+      let autoInterval: ReturnType<typeof setInterval> | null = null;
+      function autoIntervalReset() {
+        if (autoInterval) clearInterval(autoInterval);
+        autoInterval = setInterval(() => {
+          const width = getSlideWidth();
+          const next = (Math.round(carousel.scrollLeft / width) + 1) % cards.length;
+          carousel.scrollTo({ left: next * width, behavior: 'smooth' });
+        }, 5000);
+      }
+
+      carousel.addEventListener('scroll', updateDots);
+      carousel.addEventListener('touchstart', () => { if (autoInterval) clearInterval(autoInterval); });
+      carousel.addEventListener('touchend', () => setTimeout(autoIntervalReset, 3000));
+      dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => goTo(i));
+      });
+      autoIntervalReset();
+    }
   </script>
 </BaseLayout>

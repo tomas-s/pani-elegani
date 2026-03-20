@@ -105,3 +105,12 @@ html {
 .tab-entering {
   animation: tabFadeUp 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
+/* Reviews – horizontal swipe on mobile */
+.reviews-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.reviews-scroll::-webkit-scrollbar {
+  display: none;
+}
