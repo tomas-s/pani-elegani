@@ -20,7 +20,6 @@ export const ui = {
     sectionPricing: 'cennik',
     sectionHistory: 'historia',
     sectionReviews: 'recenzie',
-    heroBadge: 'Najlepší Barber shop v meste',
     heroTitle: 'Remeslo ',
     heroTitleItalic: 's citom',
     heroSubtitle:
@@ -79,7 +78,6 @@ export const ui = {
     sectionPricing: 'pricing',
     sectionHistory: 'history',
     sectionReviews: 'reviews',
-    heroBadge: 'The city’s finest barber shop',
     heroTitle: 'Craft ',
     heroTitleItalic: 'with care',
     heroSubtitle:
@@ -139,7 +137,6 @@ export const ui = {
     sectionPricing: string;
     sectionHistory: string;
     sectionReviews: string;
-    heroBadge: string;
     heroTitle: string;
     heroTitleItalic: string;
     heroSubtitle: string;
