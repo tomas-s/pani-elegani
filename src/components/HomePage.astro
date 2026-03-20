@@ -555,7 +555,7 @@ const year = new Date().getFullYear();
       }
 
       function updateDots() {
-        const scrollLeft = carousel.scrollLeft;
+        const scrollLeft = carousel?.scrollLeft ??0;
         const width = getSlideWidth();
         const index = Math.round(scrollLeft / width);
         const activeIndex = Math.min(Math.max(0, index), cards.length - 1);
@@ -570,7 +570,7 @@ const year = new Date().getFullYear();
 
       function goTo(index: number) {
         const width = getSlideWidth();
-        carousel.scrollTo({ left: index * width, behavior: 'smooth' });
+        carousel?.scrollTo({ left: index * width, behavior: 'smooth' });
         autoIntervalReset();
       }
 
@@ -579,8 +579,8 @@ const year = new Date().getFullYear();
         if (autoInterval) clearInterval(autoInterval);
         autoInterval = setInterval(() => {
           const width = getSlideWidth();
-          const next = (Math.round(carousel.scrollLeft / width) + 1) % cards.length;
-          carousel.scrollTo({ left: next * width, behavior: 'smooth' });
+          const next = (Math.round(carousel?.scrollLeft ?? 0 / width) + 1) % cards.length;
+          carousel?.scrollTo({ left: next * width, behavior: 'smooth' });
         }, 5000);
       }
 
