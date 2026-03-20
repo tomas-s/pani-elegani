@@ -1,0 +1,59 @@
+---
+import type { Locale } from '../i18n/ui';
+import { getStrings } from '../i18n/ui';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getStrings(locale);
+---
+
+<div
+  class="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-2 py-1.5 backdrop-blur-sm"
+  role="navigation"
+  aria-label={t.langSwitchAria}
+>
+  <span class="sr-only">{t.langSwitchAria}</span>
+  <svg
+    class="h-4 w-4 shrink-0 text-accent"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.75"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <path d="M2 12h20" />
+    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+  </svg>
+  <div class="flex items-center gap-1 font-sans text-[11px] font-bold uppercase tracking-widest">
+    <a
+      href="/"
+      lang="sk"
+      class:list={[
+        'rounded-full px-2 py-0.5 transition-colors',
+        locale === 'sk' ? 'bg-accent text-white' : 'text-white/60 hover:text-white',
+      ]}
+      aria-current={locale === 'sk' ? 'true' : undefined}
+      title={t.langSk}
+    >
+      SK
+    </a>
+    <a
+      href="/en/"
+      lang="en"
+      class:list={[
+        'rounded-full px-2 py-0.5 transition-colors',
+        locale === 'en' ? 'bg-accent text-white' : 'text-white/60 hover:text-white',
+      ]}
+      aria-current={locale === 'en' ? 'true' : undefined}
+      title={t.langEn}
+    >
+      EN
+    </a>
+  </div>
+</div>

@@ -4,12 +4,17 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
+  lang?: string;
 }
 
-const { title = 'PÁNI ELEGÁNI | Barber shop', description = 'Barber shop PÁNI ELEGÁNI – strih, úprava brady a starostlivosť o vous. Rezervujte si termín online.' } = Astro.props;
+const {
+  title = 'PÁNI ELEGÁNI | Barber shop',
+  description = 'Barber shop PÁNI ELEGÁNI – strih, úprava brady a starostlivosť o vous. Rezervujte si termín online.',
+  lang = 'sk',
+} = Astro.props;
 ---
 <!doctype html>
-<html lang="sk">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

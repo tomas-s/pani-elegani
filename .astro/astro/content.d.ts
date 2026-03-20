@@ -141,6 +141,13 @@ declare module 'astro:content' {
 
 	type ContentEntryMap = {
 		"about": {
+"about-en.md": {
+	id: "about-en.md";
+  slug: "about-en";
+  body: string;
+  collection: "about";
+  data: InferEntrySchema<"about">
+} & { render(): Render[".md"] };
 "about.md": {
 	id: "about.md";
   slug: "about";
@@ -150,6 +157,13 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "history": {
+"history-en.md": {
+	id: "history-en.md";
+  slug: "history-en";
+  body: string;
+  collection: "history";
+  data: InferEntrySchema<"history">
+} & { render(): Render[".md"] };
 "history.md": {
 	id: "history.md";
   slug: "history";
@@ -159,6 +173,13 @@ declare module 'astro:content' {
 } & { render(): Render[".md"] };
 };
 "pricing": {
+"pricing-en.md": {
+	id: "pricing-en.md";
+  slug: "pricing-en";
+  body: string;
+  collection: "pricing";
+  data: InferEntrySchema<"pricing">
+} & { render(): Render[".md"] };
 "pricing.md": {
 	id: "pricing.md";
   slug: "pricing";
@@ -174,6 +195,11 @@ declare module 'astro:content' {
 		"reviews": {
 "google": {
 	id: "google";
+  collection: "reviews";
+  data: InferEntrySchema<"reviews">
+};
+"google-en": {
+	id: "google-en";
   collection: "reviews";
   data: InferEntrySchema<"reviews">
 };
