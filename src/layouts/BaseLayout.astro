@@ -18,8 +18,10 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <!-- Match system status bar / Safari chrome to dark header (Tailwind `ink`) -->
+    <!-- Safari on iOS may ignore a single theme-color; media queries + fallback match dark chrome -->
     <meta name="theme-color" content="#111111" />
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -28,7 +30,7 @@ const {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,700&display=swap" rel="stylesheet" />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-parchment text-ink antialiased selection:bg-accent selection:text-white">
+  <body class="min-h-dvh bg-parchment text-ink antialiased selection:bg-accent selection:text-white">
     <slot />
   </body>
 </html>
