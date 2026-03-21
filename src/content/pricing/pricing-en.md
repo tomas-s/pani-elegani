@@ -51,7 +51,7 @@ categories:
         price: "28"
         description: Haircut, wash, styling, full beard trim and wash, massage, styling, drink
         duration: 1 h 30 min
-      - name: Beard trim & buzz cut
+      - name: Beard trim and buzz cut
         price: "22"
         description: Full beard trim, wash, styling, buzz cut, wash with scrub, scalp care, head massage
         duration: 1 hour

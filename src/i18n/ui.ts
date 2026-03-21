@@ -110,7 +110,7 @@ export const ui = {
     footerContact: 'Contact',
     footerHours: 'Opening hours',
     footerWeekdays: 'Monday - Friday',
-    footerWeekdaysOpeningHours: 'Available by appointment',
+    footerWeekdaysOpeningHours: 'By appointment',
     footerWeekend: 'Saturday - Sunday',
     footerClosed: 'Closed',
     footerCopyright: (year: number) => `© ${year} PÁNI ELEGÁNI. All rights reserved.`,

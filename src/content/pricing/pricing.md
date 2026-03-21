@@ -51,7 +51,7 @@ categories:
         price: "28"
         description: Strih, umytie vlasov, styling, kompletná úprava brady, umytie brady, masáž, styling, nápoj
         duration: 1 hod 30 min
-      - name: Úprava brady & strih dohola
+      - name: Úprava brady a strih dohola
         price: "22"
         description: Kompletná úprava brady, umytie, styling, strih dohola, umytie peelingom, ošetrenie pokožky hlavy, masáž hlavy
         duration: 1 hodina
