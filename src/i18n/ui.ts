@@ -52,9 +52,9 @@ export const ui = {
     footerContact: 'Kontakt',
     footerHours: 'Otváracie hodiny',
     footerWeekdays: 'Pondelok - Piatok',
+    footerWeekdaysOpeningHours: 'Na objednávku',
     footerWeekend: 'Sobota - Nedeľa',
     footerClosed: 'Zatvorené',
-    footerLunchNote: '* obedná prestávka 12:00 - 13:00',
     footerCopyright: (year: number) => `© ${year} PÁNI ELEGÁNI. Všetky práva vyhradené.`,
     footerCookies: 'Táto stránka nepoužíva cookies.',
     switchToEn: 'Prepnúť na angličtinu',
@@ -110,9 +110,9 @@ export const ui = {
     footerContact: 'Contact',
     footerHours: 'Opening hours',
     footerWeekdays: 'Monday - Friday',
+    footerWeekdaysOpeningHours: 'Available by appointment',
     footerWeekend: 'Saturday - Sunday',
     footerClosed: 'Closed',
-    footerLunchNote: '* lunch break 12:00 - 13:00',
     footerCopyright: (year: number) => `© ${year} PÁNI ELEGÁNI. All rights reserved.`,
     footerCookies: 'This site does not use cookies.',
     switchToEn: 'Switch to English',
@@ -165,9 +165,9 @@ export const ui = {
     footerContact: string;
     footerHours: string;
     footerWeekdays: string;
+    footerWeekdaysOpeningHours: string;
     footerWeekend: string;
     footerClosed: string;
-    footerLunchNote: string;
     footerCopyright: (year: number) => string;
     footerCookies: string;
     switchToEn: string;
