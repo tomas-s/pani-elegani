@@ -245,7 +245,7 @@ const year = new Date().getFullYear();
           pricingCategories.length > 0 ? (
             <div class="reveal" data-delay="80">
               <div class="flex justify-center mb-12" role="tablist" aria-label={t.pricingTabsAria}>
-                <div class="flex flex-wrap justify-center gap-2 sm:gap-8 border-b-2 border-subtle pb-px">
+                <div class="flex w-full flex-nowrap justify-between gap-0.5 sm:flex-wrap sm:justify-center sm:gap-8 border-b-2 border-subtle pb-px">
                   {pricingCategories.map((cat, i) => (
                     <button
                       type="button"
@@ -254,7 +254,7 @@ const year = new Date().getFullYear();
                       aria-controls={`cennik-panel-${i}`}
                       id={`cennik-tab-${i}`}
                       data-tab-index={i}
-                      class="cennik-tab px-4 py-4 font-sans text-[14px] uppercase tracking-widest font-bold text-graphite hover:text-ink transition-all focus:outline-none data-[active]:text-accent relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-transparent data-[active]:after:bg-accent"
+                      class="cennik-tab min-w-0 flex-1 px-1 py-2.5 text-center font-sans text-[10px] uppercase tracking-wide font-bold text-graphite hover:text-ink transition-all focus:outline-none data-[active]:text-accent relative after:content-[''] after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-0.5 after:bg-transparent data-[active]:after:bg-accent sm:flex-initial sm:px-4 sm:py-4 sm:text-[14px] sm:tracking-widest"
                       data-active={i === 0 ? '' : undefined}
                     >
                       {cat.name}
